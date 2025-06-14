@@ -1,0 +1,43 @@
+/* グローバルスタイル */
+:root {
+    scrollbar-width: none !important;
+}
+
+:root::-webkit-scrollbar {
+    display: none !important;
+}
+
+html,
+body {
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+* {
+    scrollbar-width: none !important;
+    box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* 共通のタイポグラフィ */
+p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+    }
+}

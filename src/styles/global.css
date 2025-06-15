@@ -1,3 +1,7 @@
+@layer base {}
+
+@layer components {}
+
 /* グローバルスタイル */
 :root {
     scrollbar-width: none !important;

@@ -2,7 +2,23 @@
 import { ref, computed } from 'vue';
 import Navigation from './components/Navigation.vue';
 import Section from './components/Section.vue';
-import RadarChart from './components/RadarChart.vue';
+import GithubSection from './components/GithubSection.vue';
+
+// セクションの型定義
+interface SectionTheme {
+  primary: string;
+  secondary: string;
+  accent: string;
+}
+
+interface Section {
+  id: string;
+  title: string;
+  content?: string;
+  component?: string;
+  icon: string;
+  theme: SectionTheme;
+}
 
 // 状態管理
 const currentSection = ref(0);
@@ -10,8 +26,6 @@ const isAnimating = ref(false);
 
 // 定数
 const ANIMATION_DURATION = 500;
-const BACKGROUND_ANGLE_RANGE = 90;
-const BACKGROUND_OPACITY_RANGE = 0.1;
 
 // フォント設定
 const fonts = {
@@ -20,7 +34,7 @@ const fonts = {
 };
 
 // セクション定義
-const sections = [
+const sections: Section[] = [
   {
     id: 'aboutMe',
     title: 'About Me',
@@ -67,7 +81,7 @@ const sections = [
   {
     id: 'github',
     title: 'GitHub',
-    content: 'Coming Soon...',
+    content: '',
     icon: 'code',
     theme: {
       primary: '#1a1a1a',
@@ -80,20 +94,32 @@ const sections = [
 // セクション切り替え
 const changeSection = (targetIndex: number) => {
   if (isAnimating.value) return;
-  
+
   isAnimating.value = true;
   currentSection.value = targetIndex;
-  
+
   setTimeout(() => {
     isAnimating.value = false;
   }, ANIMATION_DURATION);
 };
 
+// 現在のセクションコンポーネントを取得
+const currentSectionComponent = computed(() => {
+  const section = sections[currentSection.value];
+  if (section.component === 'github-section') {
+    return GithubSection;
+  }
+  return Section;
+});
+
+// 現在のセクションデータを取得
+const currentSectionData = computed(() => sections[currentSection.value]);
+
 // 背景スタイルの計算
 const backgroundStyle = computed(() => {
   const currentTheme = sections[currentSection.value].theme;
   const progress = currentSection.value / (sections.length - 1);
-  
+
   return {
     background: `
       linear-gradient(
@@ -116,22 +142,13 @@ const backgroundStyle = computed(() => {
     <div class="background" :style="backgroundStyle" />
 
     <!-- ナビゲーション -->
-    <Navigation
-      :sections="sections"
-      :current-section="currentSection"
-      :is-animating="isAnimating"
-      @change="changeSection"
-    />
+    <Navigation :sections="sections" :current-section="currentSection" :is-animating="isAnimating"
+      @change="changeSection" />
 
     <!-- セクション -->
     <main>
-      <Section
-        v-for="(section, index) in sections"
-        :key="section.id"
-        :section="section"
-        :is-active="currentSection === index"
-        :fonts="fonts"
-      />
+      <Section v-for="(section, index) in sections" :key="section.id" :section="section"
+        :is-active="currentSection === index" :fonts="fonts" />
     </main>
   </div>
 </template>

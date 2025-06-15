@@ -53,6 +53,18 @@ const chartOptions = {
       max: 100,
       ticks: {
         display: false
+      },
+      angleLines: {
+        color: 'rgba(255, 255, 255, 0.1)'
+      },
+      grid: {
+        color: 'rgba(255, 255, 255, 0.1)'
+      },
+      pointLabels: {
+        color: 'rgba(255, 255, 255, 0.95)',
+        font: {
+          size: 13,
+        },
       }
     }
   },
@@ -75,6 +87,8 @@ const chartOptions = {
 
 <style scoped>
 .radar-chart-container {
+  width: 20vw;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -102,24 +116,18 @@ h3 {
 
 .chart-wrapper {
   width: 100%;
-  max-width: 400px;
-  height: 400px;
   position: relative;
   margin: 0 auto;
 }
 
 @media (max-width: 768px) {
-  .chart-wrapper {
-    max-width: 300px;
-    height: 300px;
-  }
-
   h3 {
     font-size: 1.3rem;
   }
 
   .radar-chart-container {
-    padding: 1rem;
+    width: 73vw;
+    height: 55vh;
   }
 }
-</style> 
+</style>

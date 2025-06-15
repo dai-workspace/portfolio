@@ -16,15 +16,9 @@ const emit = defineEmits<{
 
 <template>
   <nav class="nav-icons">
-    <button 
-      v-for="(section, index) in sections"
-      :key="section.id"
-      class="nav-icon"
-      :class="{ 'active': currentSection === index }"
-      @click="emit('change', index)"
-      :disabled="isAnimating"
-      :aria-label="section.title"
-    >
+    <button v-for="(section, index) in sections" :key="section.id" class="nav-icon"
+      :class="{ 'active': currentSection === index }" @click="emit('change', index)" :disabled="isAnimating"
+      :aria-label="section.title">
       <span class="material-icons">{{ section.icon }}</span>
     </button>
   </nav>
@@ -37,18 +31,13 @@ const emit = defineEmits<{
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 15px;
+  gap: 20px;
   z-index: 3;
-  padding: 10px;
-  background-color: rgba(18, 18, 18, 0.8);
-  border-radius: 30px;
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .nav-icon {
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -77,15 +66,55 @@ const emit = defineEmits<{
   cursor: not-allowed;
 }
 
+.nav-icon .material-icons {
+  font-size: 24px;
+}
+
+/* タブレット */
+@media (max-width: 1024px) {
+  .nav-icons {
+    gap: 15px;
+  }
+
+  .nav-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .nav-icon .material-icons {
+    font-size: 22px;
+  }
+}
+
+/* モバイル */
 @media (max-width: 768px) {
   .nav-icons {
-    gap: 10px;
-    padding: 8px;
+    gap: 12px;
   }
 
   .nav-icon {
     width: 40px;
     height: 40px;
   }
+
+  .nav-icon .material-icons {
+    font-size: 20px;
+  }
 }
-</style> 
+
+/* 小さいモバイル */
+@media (max-width: 480px) {
+  .nav-icons {
+    gap: 10px;
+  }
+
+  .nav-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .nav-icon .material-icons {
+    font-size: 18px;
+  }
+}
+</style>

@@ -7,7 +7,7 @@
     height: 100vh;
     background-color: #121212;
     overflow: hidden;
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: var(--font-family-primary);
 }
 
 .background {

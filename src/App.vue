@@ -27,12 +27,6 @@ const isAnimating = ref(false);
 // 定数
 const ANIMATION_DURATION = 500;
 
-// フォント設定
-const fonts = {
-  title: 'WDXL Lubrifont JP N',
-  body: 'WDXL Lubrifont JP N'
-};
-
 // セクション定義
 const sections: Section[] = [
   {
@@ -41,11 +35,21 @@ const sections: Section[] = [
     content: `
       <div class="about-content">
         <div class="profile-info">
-          <h3>名前</h3>
-          <p>あなたの名前</p>
-          <br>
-          <h3>自己紹介</h3>
-          <p>未経験の技術に対しても積極的に調査・適応しながら取り組む姿勢を評価され、技術共有や実装指導なども担ってまいりました。これまで電力会社様や交通系企業様向けの業務用Webアプリケーション開発に携わり、JavaEE（JSP・Servlet）を中心としたバックエンド、jQuery等を用いたフロントエンドの動的な実装も経験しております。また、開発リーダーとして進捗・課題管理や技術指導を行い、認識齟齬を防ぐための積極的なコミュニケーションを重視したマネジメントにも取り組んできました。</p>
+          <p>
+            未経験の技術への積極性と適応力
+            <br>
+            経験のない技術を用いた業務に携わらせていただいた際、自身で調査を行いながら作業をすることができ、各技術の特性を理解しつつ進める姿勢があります。
+            積極性や適応力を評価していただき、プロジェクトメンバーへの技術共有や、実装指導を行う役割も担っておりました。
+            <br><br>
+            開発リーダーの経験
+            <br>
+            開発リーダーとしてプロジェクトに携わり、技術指導や進捗管理、課題管理を行った経験があります。
+            マネジメントする上で、メンバー内で認識の齟齬をできるだけ減らせるよう、コミュニケーションを活発にとることを心掛けつつ業務に携わることができます。
+            <br><br>
+            自己研鑽として個人開発
+            <br>
+            新しい技術のインプットを目的とし、日々個人開発を行い技術理解に努めています。気になる技術や面白そうな技術があれば積極的に触れることを心掛けております。
+          </p>
         </div>
       </div>
     `,
@@ -148,7 +152,7 @@ const backgroundStyle = computed(() => {
     <!-- セクション -->
     <main>
       <Section v-for="(section, index) in sections" :key="section.id" :section="section"
-        :is-active="currentSection === index" :fonts="fonts" />
+        :is-active="currentSection === index" />
     </main>
   </div>
 </template>

@@ -15,15 +15,7 @@ const props = defineProps<{
     };
   };
   isActive: boolean;
-  fonts: {
-    title: string;
-    body: string;
-  };
 }>();
-
-const sectionStyle = computed(() => ({
-  fontFamily: props.fonts.body
-}));
 
 const isSkillsSection = computed(() => props.section.id === 'skills');
 const isAboutMeSection = computed(() => props.section.id === 'aboutMe');
@@ -35,19 +27,19 @@ const isGithubSection = computed(() => props.section.id === 'github');
     'active': isActive,
     'about-me-section': isAboutMeSection
   }">
-    <h2 :style="{ fontFamily: fonts.title }">{{ section.title }}</h2>
-    <div :style="{ fontFamily: fonts.body }" v-if="isSkillsSection" class="skills-content">
+    <h2>{{ section.title }}</h2>
+    <div v-if="isSkillsSection" class="skills-content">
       <RadarChart title="プログラミング言語" :data="{
         labels: ['Java', 'JavaScript', 'TypeScript', 'SQL', 'Python'],
-        values: [90, 85, 80, 75, 70]
+        values: [75, 90, 80, 80, 85]
       }" />
       <RadarChart title="フレームワーク" :data="{
-        labels: ['Spring Boot', 'Vue.js', 'jQuery', 'React', 'Angular'],
-        values: [85, 80, 90, 75, 70]
+        labels: ['Spring Boot', 'Vue.js', 'jQuery', 'React', 'Flask'],
+        values: [70, 60, 90, 85, 90]
       }" />
       <RadarChart title="インフラ/ツール" :data="{
-        labels: ['Git', 'Docker', 'AWS', 'Jenkins', 'Kubernetes'],
-        values: [85, 70, 65, 75, 60]
+        labels: ['Git', 'Docker', 'Azure', 'Jenkins', 'Kubernetes'],
+        values: [85, 80, 75, 75, 80]
       }" />
     </div>
     <q-card-section v-else-if="isGithubSection">
@@ -58,7 +50,7 @@ const isGithubSection = computed(() => props.section.id === 'github');
         </a>
       </div>
     </q-card-section>
-    <div v-else v-html="section.content" :style="sectionStyle" class="content"></div>
+    <div v-else v-html="section.content" class="content"></div>
   </section>
 </template>
 
